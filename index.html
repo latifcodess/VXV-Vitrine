@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VXV Barbers — Crissier, Vaud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f7f5f0;
+    --mid: #888;
+    --border: #ddd;
+    --serif: 'Michroma', sans-serif;
+    --sans: 'Orbitron', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+
+  .nav-logo-svg {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .nav-svg-logo {
+    height: 70px;
+    width: auto;
+  }
+  .footer-brand-svg {
+    margin-bottom: 0.5rem;
+  }
+  .footer-svg-logo {
+    height: 60px;
+    width: auto;
+  }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    mix-blend-mode: normal;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-logo span {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    display: block;
+    margin-top: -4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 400;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 0.45; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 7vw, 7rem);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+  }
+  .hero-title em {
+    display: block;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    line-height: 2;
+    color: var(--mid);
+    max-width: 320px;
+    margin-bottom: 3rem;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--sans);
+    text-decoration: none;
+    border: 1px solid var(--black);
+    color: var(--black);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    width: fit-content;
+  }
+  .btn:hover { background: var(--black); color: var(--white); }
+  .btn-fill { background: var(--black); color: var(--white); }
+  .btn-fill:hover { background: transparent; color: var(--black); }
+
+  .hero-image {
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+  }
+  .hero-image .photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .placeholder-icon {
+    width: 48px;
+    height: 48px;
+    opacity: 0.2;
+  }
+  .placeholder-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.3);
+    text-align: center;
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, #1a1a1a 0%, transparent 100%);
+  }
+
+  /* SECTION BASE */
+  section { padding: 7rem 4rem; }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 0.5px;
+    background: var(--mid);
+  }
+
+  /* SALON PHOTOS */
+  .salon-section { background: var(--white); }
+  .salon-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    max-width: 560px;
+  }
+  .salon-desc {
+    font-size: 0.78rem;
+    line-height: 2;
+    color: var(--mid);
+    max-width: 420px;
+    margin-bottom: 4rem;
+  }
+
+  .salon-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 380px 280px;
+    gap: 8px;
+  }
+  .salon-photo {
+    background: #1c1c1c;
+    position: relative;
+    overflow: hidden;
+  }
+  .salon-photo.main { grid-row: 1 / 3; }
+  .salon-photo .photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  /* HORAIRES */
+  .hours-section {
+    background: var(--black);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .hours-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+  }
+  .hours-title em { font-style: italic; display: block; }
+  .hours-note {
+    font-size: 0.72rem;
+    line-height: 2;
+    color: rgba(247,245,240,0.45);
+    margin-top: 1.5rem;
+    max-width: 320px;
+  }
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .hours-table tr {
+    border-bottom: 0.5px solid rgba(247,245,240,0.12);
+  }
+  .hours-table tr:last-child { border-bottom: none; }
+  .hours-table td {
+    padding: 1.1rem 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+  .hours-table td:first-child {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 400;
+    color: rgba(247,245,240,0.55);
+    width: 50%;
+  }
+  .hours-table td:last-child {
+    text-align: right;
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  .closed { color: rgba(247,245,240,0.3) !important; font-style: italic; }
+  .hours-badge {
+    display: inline-block;
+    background: rgba(247,245,240,0.08);
+    border: 0.5px solid rgba(247,245,240,0.2);
+    padding: 0.3rem 0.9rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    color: rgba(247,245,240,0.55);
+  }
+
+  /* TARIFS */
+  .tarifs-section {
+    background: var(--white);
+    border-top: 0.5px solid var(--border);
+  }
+  .tarifs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .tarifs-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .tarifs-subtitle {
+    font-size: 0.72rem;
+    color: var(--mid);
+    line-height: 2;
+    max-width: 260px;
+    text-align: right;
+  }
+  .tarifs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .tarif-item {
+    background: var(--white);
+    padding: 1.6rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    transition: background 0.2s;
+  }
+  .tarif-item:hover { background: #f0ede6; }
+  .tarif-name {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 400;
+  }
+  .tarif-price {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--black);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .tarif-price.devis {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: var(--sans);
+    color: var(--mid);
+  }
+
+  /* PRODUITS */
+  .products-section { background: var(--white); }
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .products-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .products-subtitle {
+    font-size: 0.72rem;
+    color: var(--mid);
+    line-height: 2;
+    max-width: 260px;
+    text-align: right;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .product-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: background 0.2s;
+  }
+  .product-card:hover { background: #f0ede6; }
+  .product-img-slot {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #ece9e2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img-slot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 14px,
+      rgba(0,0,0,0.025) 14px,
+      rgba(0,0,0,0.025) 15px
+    );
+  }
+  .product-img-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #bbb;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .product-num {
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #bbb;
+  }
+  .product-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #999;
+    font-style: italic;
+  }
+  .product-type {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #ccc;
+    margin-top: -0.5rem;
+  }
+  .product-price {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: #ccc;
+  }
+
+  /* CONTACT / FOOTER */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 5rem 4rem 3rem;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 0.5px solid rgba(247,245,240,0.12);
+  }
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .footer-brand em { font-style: italic; }
+  .footer-tagline {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.35);
+    margin-bottom: 2rem;
+  }
+  .footer-domain {
+    font-size: 0.68rem;
+    color: rgba(247,245,240,0.35);
+    letter-spacing: 0.1em;
+  }
+  .footer-col h4 {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.35);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .footer-col p, .footer-col a {
+    font-size: 0.78rem;
+    line-height: 2.2;
+    color: rgba(247,245,240,0.65);
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: rgba(247,245,240,0.2);
+  }
+
+  /* DIVIDER ORNAMENT */
+  .ornament {
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    color: var(--border);
+    padding: 1rem 0;
+    user-select: none;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 5rem 2rem 3rem; }
+    .hero-image { min-height: 50vw; }
+    section { padding: 5rem 2rem; }
+    .salon-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .salon-photo.main { grid-row: auto; grid-column: 1 / -1; height: 300px; }
+    .hours-section { grid-template-columns: 1fr; gap: 3rem; }
+    .tarifs-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-brand { font-size: 1.8rem; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .products-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .products-subtitle { text-align: left; }
+    .tarifs-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .tarifs-subtitle { text-align: left; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo-svg"><svg class="nav-svg-logo" version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="668.000000pt" height="373.000000pt" viewBox="0 0 668.000000 373.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,373.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M2663 3103 c3 -10 35 -83 72 -163 37 -80 91 -197 120 -260 29 -63 87
+-189 130 -280 42 -91 83 -179 90 -196 13 -29 12 -36 -17 -95 -17 -35 -52 -113
+-78 -174 -26 -60 -78 -177 -115 -260 -141 -314 -197 -441 -202 -457 -5 -17 8
+-18 176 -18 l180 0 17 33 c19 36 84 198 84 209 0 4 13 35 29 70 16 35 46 107
+67 161 20 53 40 97 44 97 8 0 22 -32 81 -180 23 -58 68 -168 99 -245 l56 -140
+182 -3 c100 -1 182 1 182 5 0 8 -65 160 -112 263 -14 30 -50 111 -81 180 -31
+69 -89 199 -130 290 -113 251 -107 224 -63 327 21 48 42 93 47 98 4 6 31 64
+59 130 28 66 55 124 59 130 5 5 27 53 51 105 23 52 60 133 82 178 56 120 88
+193 88 203 0 6 -79 8 -182 7 l-182 -3 -43 -105 c-24 -58 -50 -116 -57 -130 -8
+-14 -35 -76 -61 -139 -51 -124 -66 -152 -78 -148 -8 2 -54 105 -148 330 -27
+65 -58 136 -69 158 l-20 39 -181 0 c-168 0 -181 -1 -176 -17z"/>
+<path d="M1540 2163 c0 -5 21 -44 47 -88 51 -89 94 -165 192 -338 36 -64 96
+-170 133 -235 36 -64 89 -159 117 -209 l52 -93 188 0 188 0 28 53 c16 28 76
+135 135 237 58 102 141 248 185 325 43 77 105 185 137 239 32 55 58 104 58
+108 0 4 -92 8 -204 8 l-205 0 -19 -27 c-10 -16 -81 -148 -157 -295 -77 -148
+-142 -268 -145 -268 -8 0 -20 21 -113 200 -47 91 -112 215 -144 275 l-59 110
+-207 3 c-114 1 -207 -1 -207 -5z"/>
+<path d="M3520 2164 c0 -6 101 -187 267 -477 40 -71 73 -131 73 -135 0 -3 6
+-13 14 -21 7 -9 31 -50 53 -92 23 -41 62 -112 88 -157 l48 -82 183 0 183 0 36
+55 c19 31 35 57 35 59 0 2 25 48 57 102 82 145 123 217 188 334 32 58 65 116
+75 130 9 14 38 66 65 115 27 50 59 106 72 125 13 19 23 38 23 42 0 5 -94 8
+-209 8 l-208 0 -81 -152 c-44 -84 -93 -180 -110 -213 -74 -148 -116 -225 -122
+-225 -4 0 -77 133 -161 295 l-154 295 -207 0 c-115 0 -208 -3 -208 -6z"/>
+<path d="M2080 895 l0 -285 104 0 c124 0 147 12 171 92 18 63 18 91 -1 143
+-13 36 -12 47 3 103 21 82 8 151 -39 199 l-32 33 -103 0 -103 0 0 -285z m198
+163 c17 -17 15 -83 -2 -97 -8 -7 -37 -11 -68 -9 l-53 3 -3 44 c-2 24 -1 50 2
+57 7 18 107 19 124 2z m0 -230 c17 -17 15 -83 -2 -97 -8 -7 -37 -11 -68 -9
+l-53 3 -3 44 c-2 24 -1 50 2 57 7 18 107 19 124 2z"/>
+<path d="M2484 1135 c-24 -24 -48 -61 -53 -82 -6 -21 -11 -129 -11 -240 l0
+-203 35 0 35 0 0 55 0 55 70 0 70 0 0 -55 0 -55 36 0 35 0 -3 223 c-4 243 -6
+254 -69 317 -47 46 -91 42 -145 -15z m123 -104 c19 -28 23 -47 23 -112 l0 -79
+-70 0 -70 0 0 69 c0 142 61 205 117 122z"/>
+<path d="M2770 895 l0 -285 35 0 35 0 0 55 0 55 39 0 c38 0 39 -1 53 -52 14
+-51 16 -53 53 -56 28 -3 36 0 33 10 -3 7 -11 38 -18 69 -12 54 -11 59 16 115
+38 81 44 177 15 254 -39 102 -67 120 -180 120 l-81 0 0 -285z m184 142 c27
+-37 29 -130 3 -170 -15 -23 -24 -27 -67 -27 l-50 0 0 116 0 115 46 -3 c38 -2
+51 -8 68 -31z"/>
+<path d="M3100 895 l0 -285 105 0 c100 0 107 1 129 25 45 48 59 154 31 222
+-14 33 -14 41 0 75 20 52 19 124 -4 174 -29 65 -50 74 -163 74 l-98 0 0 -285z
+m200 156 c15 -29 12 -67 -6 -86 -12 -11 -31 -15 -68 -13 l-51 3 -3 58 -3 57
+60 0 c49 0 62 -4 71 -19z m-6 -227 c19 -18 21 -75 4 -92 -7 -7 -38 -12 -70
+-12 l-58 0 0 53 c0 30 3 57 7 60 13 14 101 7 117 -9z"/>
+<path d="M3440 895 l0 -285 120 0 120 0 0 55 0 55 -85 0 -85 0 0 60 0 59 58 3
+57 3 0 50 0 50 -57 3 -58 3 0 59 0 60 85 0 85 0 0 55 0 55 -120 0 -120 0 0
+-285z"/>
+<path d="M3730 895 l0 -285 34 0 35 0 3 53 3 52 41 3 41 3 13 -56 c13 -55 13
+-55 51 -55 l37 0 -18 70 -18 70 31 58 c28 51 32 66 32 142 0 73 -4 92 -27 137
+-43 81 -65 93 -169 93 l-89 0 0 -285z m194 136 c27 -47 27 -122 -1 -159 -17
+-23 -27 -27 -69 -27 l-49 0 -3 99 c-1 55 0 106 3 113 3 10 19 13 52 11 42 -3
+49 -7 67 -37z"/>
+<path d="M4060 1121 c0 -91 9 -121 35 -121 20 0 23 6 28 68 11 114 12 112 -28
+112 l-35 0 0 -59z"/>
+<path d="M4221 1155 c-40 -34 -55 -83 -48 -164 8 -113 41 -151 131 -151 52 0
+76 -19 76 -60 0 -48 -22 -60 -111 -60 l-79 0 0 -55 0 -55 94 0 c86 0 95 2 119
+25 61 62 62 212 1 285 -23 26 -32 30 -79 30 -59 0 -85 16 -85 55 0 48 28 64
+115 67 l80 3 3 53 3 52 -95 0 c-87 0 -97 -2 -125 -25z"/>
+</g>
+</svg></a>
+  <ul class="nav-links">
+    <li><a href="#salon">Le Salon</a></li>
+    <li><a href="#horaires">Horaires</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#produits">Produits</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Barbershop — </p>
+    <h1 class="hero-title">
+      L'art du<br>
+      <em>rasage</em>
+      &amp; coupe
+    </h1>
+    <p class="hero-subtitle">Une expérience de barbershop traditionnelle, revisitée avec soin et précision. Bienvenue chez VXV Barbers.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="#horaires" class="btn btn-fill">Nos horaires</a>
+      <a href="#salon" class="btn">Découvrir</a>
+    </div>
+    <p style="margin-top:1.5rem;font-size:0.68rem;letter-spacing:0.15em;color:var(--mid);">Sans rendez-vous — venez directement au salon.</p>
+  </div>
+</section>
+
+<!-- SALON PHOTOS -->
+<section class="salon-section reveal" id="salon">
+  <div class="section-label">Le Salon</div>
+  <h2 class="salon-title">Un espace pensé pour votre confort</h2>
+  <p class="salon-desc">Chaque détail du salon a été conçu pour offrir une expérience unique. Prenez place, laissez-vous guider.</p>
+
+  <div class="salon-grid">
+    <div class="salon-photo main">
+      <div class="photo-placeholder">
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="10" width="40" height="30" rx="2" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/>
+          <circle cx="17" cy="22" r="5" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/>
+          <path d="M4 34 L14 24 L22 32 L30 24 L44 34" stroke="rgba(247,245,240,0.15)" stroke-width="1.5" fill="none"/>
+        </svg>
+        <p class="placeholder-text" style="color:rgba(247,245,240,0.18)">Photos <br>du salon</p>
+      </div>
+    </div>
+    <div class="salon-photo">
+      <div class="photo-placeholder">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect x="4" y="10" width="40" height="30" rx="2" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><circle cx="17" cy="22" r="5" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><path d="M4 34 L14 24 L22 32 L30 24 L44 34" stroke="rgba(247,245,240,0.15)" stroke-width="1.5" fill="none"/></svg>
+        <p class="placeholder-text" style="color:rgba(247,245,240,0.18)">Espace coupe</p>
+      </div>
+    </div>
+    <div class="salon-photo">
+      <div class="photo-placeholder">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect x="4" y="10" width="40" height="30" rx="2" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><circle cx="17" cy="22" r="5" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><path d="M4 34 L14 24 L22 32 L30 24 L44 34" stroke="rgba(247,245,240,0.15)" stroke-width="1.5" fill="none"/></svg>
+        <p class="placeholder-text" style="color:rgba(247,245,240,0.18)">Espace rasage</p>
+      </div>
+    </div>
+    <div class="salon-photo">
+      <div class="photo-placeholder">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect x="4" y="10" width="40" height="30" rx="2" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><circle cx="17" cy="22" r="5" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><path d="M4 34 L14 24 L22 32 L30 24 L44 34" stroke="rgba(247,245,240,0.15)" stroke-width="1.5" fill="none"/></svg>
+        <p class="placeholder-text" style="color:rgba(247,245,240,0.18)">Détail intérieur</p>
+      </div>
+    </div>
+    <div class="salon-photo">
+      <div class="photo-placeholder">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect x="4" y="10" width="40" height="30" rx="2" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><circle cx="17" cy="22" r="5" stroke="rgba(247,245,240,0.15)" stroke-width="1.5"/><path d="M4 34 L14 24 L22 32 L30 24 L44 34" stroke="rgba(247,245,240,0.15)" stroke-width="1.5" fill="none"/></svg>
+        <p class="placeholder-text" style="color:rgba(247,245,240,0.18)">Ambiance</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORAIRES -->
+<section class="hours-section reveal" id="horaires">
+  <div>
+    <div class="hours-badge">Ouverture</div>
+    <h2 class="hours-title">Nos<br><em>horaires</em></h2>
+    <p class="hours-note">Sans rendez-vous — venez directement au salon pendant nos heures d'ouverture. Nous serons ravis de vous accueillir.</p>
+  </div>
+  <div>
+    <table class="hours-table">
+      <tr>
+        <td>Lundi</td>
+        <td>14h00 — 19h00</td>
+      </tr>
+      <tr>
+        <td>Mardi</td>
+        <td>10h00 — 19h00</td>
+      </tr>
+      <tr>
+        <td>Mercredi</td>
+        <td>10h00 — 19h00</td>
+      </tr>
+      <tr>
+        <td>Jeudi</td>
+        <td>10h00 — 19h00</td>
+      </tr>
+      <tr>
+        <td>Vendredi</td>
+        <td>10h00 — 19h00</td>
+      </tr>
+      <tr>
+        <td>Samedi</td>
+        <td>08h00 — 18h00</td>
+      </tr>
+      <tr>
+        <td>Dimanche</td>
+        <td class="closed">Fermé</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="tarifs-section reveal" id="tarifs">
+  <div class="tarifs-header">
+    <h2 class="tarifs-title">Nos<br>Tarifs</h2>
+  </div>
+
+  <div class="tarifs-grid">
+    <div class="tarif-item">
+      <span class="tarif-name">Coupe</span>
+      <span class="tarif-price">25 CHF</span>
+    </div>
+    <div class="tarif-item">
+      <span class="tarif-name">Coupe + Barbe</span>
+      <span class="tarif-price">35 CHF</span>
+    </div>
+    <div class="tarif-item">
+      <span class="tarif-name">Enfants</span>
+      <span class="tarif-price">22 CHF</span>
+    </div>
+    <div class="tarif-item">
+      <span class="tarif-name">Barbe</span>
+      <span class="tarif-price">17 CHF</span>
+    </div>
+    <div class="tarif-item">
+      <span class="tarif-name">Coupe + Bouc</span>
+      <span class="tarif-price">30 CHF</span>
+    </div>
+    <div class="tarif-item">
+      <span class="tarif-name">Permanente</span>
+      <span class="tarif-price">50 CHF</span>
+    </div>
+    <div class="tarif-item">
+      <span class="tarif-name">Mèche</span>
+      <span class="tarif-price">50 CHF</span>
+    </div>
+    <div class="tarif-item">
+      <span class="tarif-name">Couleur complète</span>
+      <span class="tarif-price devis">Sur devis</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section class="products-section reveal" id="produits">
+  <div class="products-header">
+    <h2 class="products-title">Nos<br>Produits</h2>
+    <p class="products-subtitle">Sélection de produits professionnels disponibles en salon.</p>
+  </div>
+
+  <div class="products-grid">
+    <!-- Produit 1 -->
+    <div class="product-card">
+      <div class="product-img-slot">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="10" y="4" width="28" height="40" rx="3" stroke="#ccc" stroke-width="1.5"/><line x1="10" y1="14" x2="38" y2="14" stroke="#ccc" stroke-width="1"/></svg>
+        <p class="product-img-text">Photo<br>à venir</p>
+      </div>
+      <p class="product-num">01</p>
+      <p class="product-name">Produit à définir</p>
+      <p class="product-type">Type · catégorie</p>
+      <p class="product-price">CHF —</p>
+    </div>
+    <!-- Produit 2 -->
+    <div class="product-card">
+      <div class="product-img-slot">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="10" y="4" width="28" height="40" rx="3" stroke="#ccc" stroke-width="1.5"/><line x1="10" y1="14" x2="38" y2="14" stroke="#ccc" stroke-width="1"/></svg>
+        <p class="product-img-text">Photo<br>à venir</p>
+      </div>
+      <p class="product-num">02</p>
+      <p class="product-name">Produit à définir</p>
+      <p class="product-type">Type · catégorie</p>
+      <p class="product-price">CHF —</p>
+    </div>
+        <div class="product-card">
+      <div class="product-img-slot">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="10" y="4" width="28" height="40" rx="3" stroke="#ccc" stroke-width="1.5"/><line x1="10" y1="14" x2="38" y2="14" stroke="#ccc" stroke-width="1"/></svg>
+        <p class="product-img-text">Photo<br>à venir</p>
+      </div>
+      <p class="product-num">03</p>
+      <p class="product-name">Produit à définir</p>
+      <p class="product-type">Type · catégorie</p>
+      <p class="product-price">CHF —</p>
+    </div>
+        <div class="product-card">
+      <div class="product-img-slot">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="10" y="4" width="28" height="40" rx="3" stroke="#ccc" stroke-width="1.5"/><line x1="10" y1="14" x2="38" y2="14" stroke="#ccc" stroke-width="1"/></svg>
+        <p class="product-img-text">Photo<br>à venir</p>
+      </div>
+      <p class="product-num">04</p>
+      <p class="product-name">Produit à définir</p>
+      <p class="product-type">Type · catégorie</p>
+      <p class="product-price">CHF —</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-svg"><svg class="footer-svg-logo" version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="668.000000pt" height="373.000000pt" viewBox="0 0 668.000000 373.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,373.000000) scale(0.100000,-0.100000)"
+fill="#f7f5f0" stroke="none">
+<path d="M2663 3103 c3 -10 35 -83 72 -163 37 -80 91 -197 120 -260 29 -63 87
+-189 130 -280 42 -91 83 -179 90 -196 13 -29 12 -36 -17 -95 -17 -35 -52 -113
+-78 -174 -26 -60 -78 -177 -115 -260 -141 -314 -197 -441 -202 -457 -5 -17 8
+-18 176 -18 l180 0 17 33 c19 36 84 198 84 209 0 4 13 35 29 70 16 35 46 107
+67 161 20 53 40 97 44 97 8 0 22 -32 81 -180 23 -58 68 -168 99 -245 l56 -140
+182 -3 c100 -1 182 1 182 5 0 8 -65 160 -112 263 -14 30 -50 111 -81 180 -31
+69 -89 199 -130 290 -113 251 -107 224 -63 327 21 48 42 93 47 98 4 6 31 64
+59 130 28 66 55 124 59 130 5 5 27 53 51 105 23 52 60 133 82 178 56 120 88
+193 88 203 0 6 -79 8 -182 7 l-182 -3 -43 -105 c-24 -58 -50 -116 -57 -130 -8
+-14 -35 -76 -61 -139 -51 -124 -66 -152 -78 -148 -8 2 -54 105 -148 330 -27
+65 -58 136 -69 158 l-20 39 -181 0 c-168 0 -181 -1 -176 -17z"/>
+<path d="M1540 2163 c0 -5 21 -44 47 -88 51 -89 94 -165 192 -338 36 -64 96
+-170 133 -235 36 -64 89 -159 117 -209 l52 -93 188 0 188 0 28 53 c16 28 76
+135 135 237 58 102 141 248 185 325 43 77 105 185 137 239 32 55 58 104 58
+108 0 4 -92 8 -204 8 l-205 0 -19 -27 c-10 -16 -81 -148 -157 -295 -77 -148
+-142 -268 -145 -268 -8 0 -20 21 -113 200 -47 91 -112 215 -144 275 l-59 110
+-207 3 c-114 1 -207 -1 -207 -5z"/>
+<path d="M3520 2164 c0 -6 101 -187 267 -477 40 -71 73 -131 73 -135 0 -3 6
+-13 14 -21 7 -9 31 -50 53 -92 23 -41 62 -112 88 -157 l48 -82 183 0 183 0 36
+55 c19 31 35 57 35 59 0 2 25 48 57 102 82 145 123 217 188 334 32 58 65 116
+75 130 9 14 38 66 65 115 27 50 59 106 72 125 13 19 23 38 23 42 0 5 -94 8
+-209 8 l-208 0 -81 -152 c-44 -84 -93 -180 -110 -213 -74 -148 -116 -225 -122
+-225 -4 0 -77 133 -161 295 l-154 295 -207 0 c-115 0 -208 -3 -208 -6z"/>
+<path d="M2080 895 l0 -285 104 0 c124 0 147 12 171 92 18 63 18 91 -1 143
+-13 36 -12 47 3 103 21 82 8 151 -39 199 l-32 33 -103 0 -103 0 0 -285z m198
+163 c17 -17 15 -83 -2 -97 -8 -7 -37 -11 -68 -9 l-53 3 -3 44 c-2 24 -1 50 2
+57 7 18 107 19 124 2z m0 -230 c17 -17 15 -83 -2 -97 -8 -7 -37 -11 -68 -9
+l-53 3 -3 44 c-2 24 -1 50 2 57 7 18 107 19 124 2z"/>
+<path d="M2484 1135 c-24 -24 -48 -61 -53 -82 -6 -21 -11 -129 -11 -240 l0
+-203 35 0 35 0 0 55 0 55 70 0 70 0 0 -55 0 -55 36 0 35 0 -3 223 c-4 243 -6
+254 -69 317 -47 46 -91 42 -145 -15z m123 -104 c19 -28 23 -47 23 -112 l0 -79
+-70 0 -70 0 0 69 c0 142 61 205 117 122z"/>
+<path d="M2770 895 l0 -285 35 0 35 0 0 55 0 55 39 0 c38 0 39 -1 53 -52 14
+-51 16 -53 53 -56 28 -3 36 0 33 10 -3 7 -11 38 -18 69 -12 54 -11 59 16 115
+38 81 44 177 15 254 -39 102 -67 120 -180 120 l-81 0 0 -285z m184 142 c27
+-37 29 -130 3 -170 -15 -23 -24 -27 -67 -27 l-50 0 0 116 0 115 46 -3 c38 -2
+51 -8 68 -31z"/>
+<path d="M3100 895 l0 -285 105 0 c100 0 107 1 129 25 45 48 59 154 31 222
+-14 33 -14 41 0 75 20 52 19 124 -4 174 -29 65 -50 74 -163 74 l-98 0 0 -285z
+m200 156 c15 -29 12 -67 -6 -86 -12 -11 -31 -15 -68 -13 l-51 3 -3 58 -3 57
+60 0 c49 0 62 -4 71 -19z m-6 -227 c19 -18 21 -75 4 -92 -7 -7 -38 -12 -70
+-12 l-58 0 0 53 c0 30 3 57 7 60 13 14 101 7 117 -9z"/>
+<path d="M3440 895 l0 -285 120 0 120 0 0 55 0 55 -85 0 -85 0 0 60 0 59 58 3
+57 3 0 50 0 50 -57 3 -58 3 0 59 0 60 85 0 85 0 0 55 0 55 -120 0 -120 0 0
+-285z"/>
+<path d="M3730 895 l0 -285 34 0 35 0 3 53 3 52 41 3 41 3 13 -56 c13 -55 13
+-55 51 -55 l37 0 -18 70 -18 70 31 58 c28 51 32 66 32 142 0 73 -4 92 -27 137
+-43 81 -65 93 -169 93 l-89 0 0 -285z m194 136 c27 -47 27 -122 -1 -159 -17
+-23 -27 -27 -69 -27 l-49 0 -3 99 c-1 55 0 106 3 113 3 10 19 13 52 11 42 -3
+49 -7 67 -37z"/>
+<path d="M4060 1121 c0 -91 9 -121 35 -121 20 0 23 6 28 68 11 114 12 112 -28
+112 l-35 0 0 -59z"/>
+<path d="M4221 1155 c-40 -34 -55 -83 -48 -164 8 -113 41 -151 131 -151 52 0
+76 -19 76 -60 0 -48 -22 -60 -111 -60 l-79 0 0 -55 0 -55 94 0 c86 0 95 2 119
+25 61 62 62 212 1 285 -23 26 -32 30 -79 30 -59 0 -85 16 -85 55 0 48 28 64
+115 67 l80 3 3 53 3 52 -95 0 c-87 0 -97 -2 -125 -25z"/>
+</g>
+</svg></div>
+      <p class="footer-domain">vxvbarbers.ch</p>
+    </div>
+    <div class="footer-col">
+      <h4>Adresses</h4>
+      <p>Rue du Jura 11</p>
+      <p>1023 Crissier</p>
+      <p>Vaud, Suisse</p>
+      <br>
+      <p>Route des plaines du loup 55</p>
+      <p>1018 Lausanne</p>
+      <p>Vaud, Suisse</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="#salon">Le Salon</a>
+      <a href="#horaires">Horaires</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#produits">Produits</a>
+      <a href="#contact">Contact</a>
+      <br>
+      <h4 style="margin-top:1rem;">Réseaux</h4>
+      <a href="https://www.instagram.com/vxvbarbers/">instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 VXV Barbers — Tous droits réservés</span>
+    <span>vxvbarbers.ch</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
